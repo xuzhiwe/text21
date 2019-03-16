@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        //onblur:失去焦点
+        //onfocus:获得焦点
+        function checkUname(){
+            //获取文本框内容
+            var uname = $('#uname').val()
+            //非空判断
+            if (uname.length==0){
+                $('#unameSpan').html('*');
+                $('#unameSpan').css('color','red');
+            }else{
+            //唯一性判断
+            $.get('/student/isExist/',{'uname':uname},function(result){
+                alert(result.flag);
+                r = result.flag;
+                //根据服务器端的相应信息进行页面更新
+                if(r){
+                    $('#unameSpan').html('此用户名已被注册');
+                    $('#unameSpan').css('color','red');
+                }else{
+                     $('#unameSpan').html('√');
+                     $('#unameSpan').css('color','green');
+                }
+            })
+        }
+            }
+
+    </script>
+</head>
+<body>
+    用户名：<input type="text" name="uname" id="uname" onblur="checkUname()"><span id="unameSpan"></span>
+</body>
+</html>

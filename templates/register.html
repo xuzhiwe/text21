@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .msg{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form action="/student/register/" method="post">
+    {% csrf_token %}
+    <p>{{clsForm.cname.label }}{{ clsForm.cname }}</p>
+    <p>{{ stuForm.sname.label }}{{ stuForm.sname }}</p>
+    <p>{{ stuForm.password.label }}{{ stuForm.password }}</p>
+    <p>{{ stuForm.password2.label }}{{ stuForm.password2 }}</p><span class="msg">{{ stuForm.errors.password2.0}}</span>
+    &emsp;&emsp;&emsp;&emsp;&emsp;<input type="submit" value="注册">
+</form>
+</body>
+</html>
